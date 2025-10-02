@@ -44,11 +44,8 @@ namespace SportSphere.Application.Features.Authentication.Orhcesterators
                 if (result.Success)
                 {
                     var profileCommand = request.RegisterOrchesteratorData.Profile.MapOnto(new AddProfileDto());
-                    // Assuming RegisterOrchesteratorData.Profile is of type RegisterOrchesteratorProfile
-                    //var profileCommand = request.RegisterOrchesteratorData.Profile.Map<AddProfileDto>();
 
                     profileCommand.UserId = result.Data.UserId;
-                    //request.RegisterOrchesteratorData.Profile.UserId = result.Data.UserId;
                     var response = await mediator.Send(new AddProfileCommand { Profile = profileCommand });
                     if (response.Success)
                     {
@@ -110,7 +107,7 @@ namespace SportSphere.Application.Features.Authentication.Orhcesterators
             catch (Exception e)
             {
 
-                return ApiResponse<RegisterRetDto>.Error(ErrorCode.UnknownError, $"Unexpected error!=> {e.Message}");
+                return ApiResponse<RegisterRetDto>.Error(ErrorCode.UnknownError, $"Unexpected error!");
             }
 
         }
